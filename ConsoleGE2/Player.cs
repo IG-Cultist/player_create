@@ -8,87 +8,70 @@ namespace ConsoleGE2
 {
     class Player
     {
-        private string[] name = new string[2];
-        private string[] hp = new string[2];
-        private string[] atk = new string[2];
-        public void CreatePlayer()
+        //---------------------------
+        // フィールド
+        //---------------------------
+        // プレイヤー名
+        private string name;
+        // 体力
+        private int hp;
+        // 攻撃力
+        private int atk;
+        public Player(string _name, int _hp, int _atk)
         {
-            //2人分のステータスを記入
-            for (int i = 0; i < 2; i++)
+            _name = "";
+            _hp = 1;
+            _atk = 1;
+        }
+        //プレイヤー保存クラス
+        PlayerList[] playerList = new PlayerList[2];
+
+        //---------------------------
+        // メソッド
+        //---------------------------
+        public void CreatePlayer(int num)
+        {
+            Console.Clear();
+            string hpStr;
+            string atkStr;
+            Console.Write("名前を入力:");
+            name = Console.ReadLine();
+
+            while (true)
             {
-                Console.Write((i + 1) + "人目の名前を入力:");
-                name[i] = Console.ReadLine();
-
-                Console.Write((i + 1) + "人目の体力を入力:");
-                hp[i] = Console.ReadLine();
-
-                Console.Write((i + 1) + "人目の攻撃力を入力:");
-                atk[i] = Console.ReadLine();
+                Console.Write("体力を入力:");
+                hpStr = Console.ReadLine();
+                if (int.TryParse(hpStr, out hp)) break;
+                else Console.WriteLine("数値を入力してください");
             }
+
+            while (true)
+            {
+                Console.Write("攻撃力を入力:");
+                atkStr = Console.ReadLine();
+                if (int.TryParse(atkStr, out atk)) break;
+                else Console.WriteLine("数値を入力してください");
+            }
+            
+            playerList[num] = new PlayerList(name, hp, atk);
         }
 
         public void ShowPlayer()
         {
-            //各ステータスを表示
-            for (int i = 0; i < 2; i++)
+            Console.Clear();
+            if (name == null)
             {
-                Console.WriteLine(name[i] + "のステータス");
-                Console.WriteLine("HP:" + hp[i]);
-                Console.WriteLine("ATK:" + atk[i]);
-            }
-            Console.ReadLine();
-        }
-
-        public void PlayerBattle()
-        {
-            int[] HP = new int[2];
-            int[] ATK = new int[2];
-            int nowTurn = 0;
-            int waitTurn = 1;
-
-            // 各ステータスをint化
-            for (int i = 0; i < 2; i++)
-            {
-                int.TryParse(hp[i], out HP[i]);
-                int.TryParse(atk[i], out ATK[i]);
-            }
-
-            // どちらかのHPが0になるとループ終了
-            while (true)
-            {
-                Console.WriteLine(name[nowTurn] + "の攻撃！" + name[waitTurn] + "に" + ATK[nowTurn] + "ダメージ");
-                HP[waitTurn] -= ATK[nowTurn]; // 現在ターンプレイヤーの攻撃力分待機中プレイヤーの体力を減らす
-
-                // 0を下回った場合、0に再設定する
-                if (HP[waitTurn] <= 0)
-                {
-                    HP[waitTurn] = 0;
-                }
-                Console.WriteLine(name[nowTurn] + "[HP:" + HP[nowTurn] + "]");
-                Console.WriteLine(name[waitTurn] + "[HP:" + HP[waitTurn] + "]");
+                Console.WriteLine("まだプレイヤーがいません");
                 Console.ReadLine();
-
-                // 0を下回った場合
-                if (HP[waitTurn] <= 0)
-                {
-                    Console.WriteLine(name[nowTurn] + "の勝ち");
-                    Console.ReadLine();
-                    break;
-                }
-                else
-                {// ターン切り替え
-                    if (nowTurn == 0)
-                    {
-                        nowTurn = 1;
-                        waitTurn = 0;
-                    }
-                    else
-                    {
-                        nowTurn = 0;
-                        waitTurn = 1;
-                    }
-                }
+                return;
             }
+            Console.WriteLine("=============================");
+            Console.WriteLine(name + "のステータス");
+            Console.WriteLine("=============================");
+            Console.WriteLine("HP:" + hp);
+            Console.WriteLine("ATK:" + atk);
+            Console.WriteLine("=============================");
+            Console.ReadLine();
         }
     }
 }
