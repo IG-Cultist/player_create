@@ -13,7 +13,14 @@ namespace ConsoleGE2
 
         }
 
-        private class CreatePlayer
+ 
+
+
+    }
+
+    class Player
+    {
+        private void CreatePlayer()
         {
             //string[] name = new string[]; 
             //
@@ -22,7 +29,5 @@ namespace ConsoleGE2
             //    
             //}
         }
-
-
     }
 }
