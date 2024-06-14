@@ -10,6 +10,19 @@ namespace ConsoleGE2
     {
         static void Main(string[] args)
         {
+
         }
+
+        private class CreatePlayer
+        {
+            //string[] name = new string[]; 
+            //
+            //for(int i = 0; i < 2; i++)
+            //{
+            //    
+            //}
+        }
+
+
     }
 }
