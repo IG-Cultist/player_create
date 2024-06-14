@@ -10,29 +10,32 @@ namespace ConsoleGE2
     {
         static void Main(string[] args)
         {
-
+            Player player = new Player();
+            player.CreatePlayer();
+            player.ShowPlayer();
         }
-
- 
-
-
     }
 
     class Player
     {
-       private void CreatePlayer()
+        private string[] name = new string[2];
+        private string[] hp = new string[2];
+        private string[] atk = new string[2];
+        public void CreatePlayer()
         {
-            //string[] name = new string[]; 
-            //
-            //for(int i = 0; i < 2; i++)
-            //{
-            //    
-            //}
+            for (int i = 0; i < 2; i++)
+            {
+                Console.Write((i + 1) + "人目の名前を入力:");
+                name[i] = Console.ReadLine();
+
+                Console.Write((i + 1) + "人目の体力を入力:");
+                hp[i] = Console.ReadLine();
+
+                Console.Write((i + 1) + "人目の攻撃力を入力:");
+                atk[i] = Console.ReadLine();
+            }
         }
 
-        private void ShowPlayer()
-        {
 
-        }
     }
 }
