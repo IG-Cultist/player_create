@@ -36,6 +36,15 @@ namespace ConsoleGE2
             }
         }
 
-
+        public void ShowPlayer()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                Console.WriteLine(name[i] + "のステータス");
+                Console.WriteLine("HP:" + hp[i]);
+                Console.WriteLine("ATK:" + atk[i]);
+            }
+             Console.ReadLine();
+        }
     }
 }
